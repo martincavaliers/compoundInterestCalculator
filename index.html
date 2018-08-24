@@ -24,7 +24,7 @@
 					</div>
 					<br>
 					<div class = "input-group">
-						<input type="text" class="form-control" id = "monthlyAmount" placeholder="Monthly Deposit" aria-describedby="basic-addon1">
+						<input type="text" class="form-control" id = "monthlyDeposit" placeholder="Monthly Deposit" aria-describedby="basic-addon1">
 					</div>
 					<br>
 					<div class = "input-group">
@@ -44,35 +44,14 @@
 
 				<!-- Results Div -->
 				<div class = "col-lg-8 resultsDiv">
-					<div class = "row">
-						<div class = "col-lg-2 yearDiv">
-							<h3>Year</h3>
-							<ul class = "yearList">
-								
-							</ul>
-						</div>
-
-						<div class = "col-lg-2">
-							<h3>Deposit</h3>
-							<ul>
-								
-							</ul>
-						</div>
-
-						<div class = "col-lg-2">
-							<h3>Interest</h3>
-							<ul>
-								
-							</ul>
-						</div>
-
-						<div class = "col-lg-2">
-							<h3>Balance</h3>
-							<ul>
-								
-							</ul>
-						</div>
-					</div>
+					<table style = "width: 100%" id = "infoTable">
+						<tr>
+						  <th>Year</th>
+						  <th>Deposit</th> 
+						  <th>Interest</th>
+						  <th>Balance</th>
+						</tr>
+					  </table>
 				</div>
 				
 			</div>
