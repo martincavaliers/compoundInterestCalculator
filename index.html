@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Compound Interest Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+	<body>
+		<div class = "jumbotron jumbotron-fluid">
+			<h1 class = "display-3 text-center"><u>Compound Interest Calculator</u></h1>
+		</div>
+
+<!-- Main Container -->
+		<div class = "container">
+			<div class = "row">
+
+			<!-- Input Group -->
+				<div class = "col-lg-4 input-group-lg">
+					<div class = "input-group">
+						<input type="text" class="form-control" id = "startAmount" placeholder="Starting Amount" aria-describedby="basic-addon1">
+					</div>
+					<br>
+					<div class = "input-group">
+						<input type="text" class="form-control" id = "monthlyAmount" placeholder="Monthly Deposit" aria-describedby="basic-addon1">
+					</div>
+					<br>
+					<div class = "input-group">
+						<input type="text" class="form-control" id = "averageInterest"placeholder="Average Interest %" aria-describedby="basic-addon1">
+					</div>
+					<br>
+					<div class = "input-group">
+						<input type="text" class="form-control" id = "years"placeholder="Years" aria-describedby="basic-addon1">
+					</div>
+					<br>
+					<div class = "text-center">
+						<button type="button" class="btn btn-success" id = "calculateButton">Calculate</button>
+						<button type="button" class="btn btn-danger" id = "resetButton">Reset</button>
+					</div>
+				</div>
+				<!-- /Input Group -->
+
+				<!-- Results Div -->
+				<div class = "col-lg-8 resultsDiv">
+					<div class = "row">
+						<div class = "col-lg-2 yearDiv">
+							<h3>Year</h3>
+							<ul class = "yearList">
+								
+							</ul>
+						</div>
+
+						<div class = "col-lg-2">
+							<h3>Deposit</h3>
+							<ul>
+								
+							</ul>
+						</div>
+
+						<div class = "col-lg-2">
+							<h3>Interest</h3>
+							<ul>
+								
+							</ul>
+						</div>
+
+						<div class = "col-lg-2">
+							<h3>Balance</h3>
+							<ul>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<!-- /Main Container -->
+			
+		</div>
+
+
+		<script src = "app.js"></script
+	</body>
+</html>
