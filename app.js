@@ -4,9 +4,10 @@ const resultsDiv = document.getElementsByClassName("resultsDiv");
 const infoTable = document.getElementById("infoTable");
 yearsArray = new Array();
 depositArray = new Array();
+noIBalanceArray = new Array();
 interestArray = new Array();
 balanceArray = new Array();
-titleArray = ["Year", "Deposit", "Interest", "Balance"];
+titleArray = ["Year", "Balance", "Deposit", "Interest", "Balance"];
 
 // Create Table Headings
 function tableHeadings(){
@@ -26,15 +27,15 @@ function tableHeadings(){
 
 // Calculate Interest function
 function calculateInterest(balance, deposit, interest){
-    let startBalance = balance + deposit;
-    let newInterest = (startBalance/100) * interest;
+    let startBalance = parseFloat(balance) + parseFloat(deposit);
+    let newInterest = (startBalance/100) * parseFloat(interest);
     return newInterest;
 }
 
 // Calculate New Balance function
 function calculateNewBalance(balance, deposit, interest){
-    let startBalance = balance + deposit;
-    let balanceInterest = (startBalance/100) * interest;
+    let startBalance = parseFloat(balance) + parseFloat(deposit);
+    let balanceInterest = (startBalance/100) * parseFloat(interest);
     let newBalance = startBalance + balanceInterest;
     return newBalance;
 }
@@ -57,6 +58,7 @@ tableHeadings();
 calculateButton.addEventListener('click', (e) => {
     // Variable declarations
     let startAmount = document.getElementById("startAmount").value;
+    noIBalanceArray.push(startAmount);
     balanceArray.push(startAmount);
     let monthlyDeposit = document.getElementById("monthlyDeposit").value;
     let averageInterest = document.getElementById("averageInterest").value;
@@ -68,19 +70,39 @@ calculateButton.addEventListener('click', (e) => {
         yearsArray.push(i + 1);
         
         depositArray.push(monthlyDeposit);
+    }
 
+    // Populating no interest array
+    for(let i = 1; i < years; i++){
+        let val1 = parseFloat(noIBalanceArray[i-1]);
+        let val2 = parseFloat(depositArray[i]);
+        val3 = (val1 + val2);
+        noIBalanceArray.push(val3);
+    }
+
+    // Calculating interest
+    for(var i = 0; i < years; i ++){
+        let v = calculateInterest(noIBalanceArray[i], depositArray[i], averageInterest);
+        interestArray.push(v);    
+    }
+
+    // Calculating new balance
+    for(var i = 0; i < years; i ++){
+        let v = calculateNewBalance(noIBalanceArray[i], depositArray[i], averageInterest);
+        balanceArray.push(v);    
     }
 
     // Years & deposit collumn population
     for(var i = 0; i < years; i ++){
         createRow(yearsArray, i);
 
-        createRow(depositArray, i);
-    }
+        createRow(noIBalanceArray, i);
 
-    for(var i = 0; i < years; i ++){
-      calculateInterest(balanceArray[i], depositArray[i], averageInterest);
-      console.log(interestArray);  
+        createRow(depositArray, i);
+
+        createRow(interestArray, i);
+        
+        // createRow(balanceArray, (i+1));
     }
 });
 
