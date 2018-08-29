@@ -4,9 +4,11 @@ const resultsDiv = document.getElementsByClassName("resultsDiv");
 const infoTable = document.getElementById("infoTable");
 yearsArray = new Array();
 depositArray = new Array();
+firstRowArray = new Array();
 noIBalanceArray = new Array();
-interestArray = new Array();
+interestArray = [0];
 balanceArray = new Array();
+startAmountArray = new Array();
 titleArray = ["Year", "Balance", "Deposit", "Interest", "Balance"];
 
 // Create Table Headings
@@ -41,7 +43,7 @@ function calculateNewBalance(balance, deposit, interest){
 }
 
 // Creates row and appends to table
-function createRow(array, counter){
+function createCollumn(array, counter){
         const tr = document.createElement("TR");
         infoTable.appendChild(tr);
         let rowNumber = yearsArray[counter];
@@ -58,11 +60,17 @@ tableHeadings();
 calculateButton.addEventListener('click', (e) => {
     // Variable declarations
     let startAmount = document.getElementById("startAmount").value;
+    startAmountArray.push(startAmount);
     noIBalanceArray.push(startAmount);
-    balanceArray.push(startAmount);
     let monthlyDeposit = document.getElementById("monthlyDeposit").value;
     let averageInterest = document.getElementById("averageInterest").value;
     let years = document.getElementById("years").value;
+
+    firstRowArray = [0, startAmount, monthlyDeposit, 0, (parseFloat(startAmount) + parseFloat(monthlyDeposit))];
+
+    balanceArray.push(firstRowArray[4]);
+
+
     
 
     // Populating years & deposit arrays
@@ -88,21 +96,24 @@ calculateButton.addEventListener('click', (e) => {
 
     // Calculating new balance
     for(var i = 0; i < years; i ++){
-        let v = calculateNewBalance(noIBalanceArray[i], depositArray[i], averageInterest);
+        let v = calculateNewBalance(startAmountArray[i], depositArray[i], averageInterest);
+        // startAmountArray.push(v);
         balanceArray.push(v);    
     }
 
+
     // Years & deposit collumn population
     for(var i = 0; i < years; i ++){
-        createRow(yearsArray, i);
+    
+        createCollumn(yearsArray, i);
 
-        createRow(noIBalanceArray, i);
+        createCollumn(balanceArray, i);
 
-        createRow(depositArray, i);
+        createCollumn(depositArray, i);
 
-        createRow(interestArray, i);
+        createCollumn(interestArray, i);
         
-        // createRow(balanceArray, (i+1));
+        createCollumn(balanceArray, i);
     }
 });
 
